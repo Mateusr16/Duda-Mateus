@@ -1,0 +1,2 @@
+Coloque aqui UMA imagem de capa (jpg/png/webp). Ela aparece como fundo da capa. Opcional.
+Depois de colocar, dê duplo clique em atualizar-galeria.bat.

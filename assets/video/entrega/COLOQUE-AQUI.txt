@@ -1,0 +1,2 @@
+Coloque aqui os vídeos da entrega (mp4). Para escolher a imagem de capa de um vídeo, coloque uma foto com o MESMO nome (ex.: 01.mp4 e 01.jpg).
+Depois de colocar, dê duplo clique em atualizar-galeria.bat.

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual — Página de entrega</title>
+<style>
+:root{--ink:#24291c;--olive:#4f5d2f;--cream:#f4f0e6;--gold:#a08a55;--line:#ddd6c3}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.65 "Segoe UI",system-ui,sans-serif}
+.wrap{max-width:820px;margin:auto;padding:48px 22px 90px}
+h1{font:600 40px/1.15 Georgia,serif;margin:0 0 6px}
+h2{font:600 26px/1.2 Georgia,serif;margin:56px 0 12px;padding-top:14px;border-top:1px solid var(--line)}
+h3{font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:28px 0 6px}
+p{margin:8px 0}
+.lead{color:#5d6052;font-size:18px}
+code,.k{background:#e9e4d6;border-radius:5px;padding:1px 7px;font:14px Consolas,monospace}
+pre{background:#24291c;color:#f4f0e6;border-radius:10px;padding:18px 20px;overflow:auto;font:14px/1.6 Consolas,monospace}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--gold);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.box{background:#fff;border:1px solid var(--line);border-left:4px solid var(--olive);border-radius:8px;padding:14px 18px;margin:16px 0}
+.warn{border-left-color:#b5822d}
+ol,ul{padding-left:22px}li{margin:5px 0}
+.toc a{color:var(--olive);text-decoration:none}.toc a:hover{text-decoration:underline}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>Manual da página de entrega</h1>
+<p class="lead">Como trocar o vídeo inicial, as fotos, os vídeos, a música e os textos — sem mexer em código.</p>
+
+<p class="toc">
+<a href="#resumo">1. Resumo</a> ·
+<a href="#pastas">2. Mapa das pastas</a> ·
+<a href="#passo">3. Passo a passo</a> ·
+<a href="#textos">4. Mudar textos</a> ·
+<a href="#dicas">5. Tamanho e formato</a> ·
+<a href="#problemas">6. Problemas comuns</a> ·
+<a href="#dentro">7. Como funciona por dentro</a>
+</p>
+
+<h2 id="resumo">1. Resumo em 4 linhas</h2>
+<ol>
+  <li>Coloque seus arquivos nas pastas dentro de <code>assets</code> (vídeo inicial, fotos, vídeos, música).</li>
+  <li>Dê <b>duplo clique</b> em <code>atualizar-galeria.bat</code>. Ele “enxerga” o que você colocou.</li>
+  <li>Abra o <code>index.html</code> no navegador (ou atualize com <span class="k">F5</span>).</li>
+  <li>Para trocar nomes, data e textos, edite o <code>config.js</code> com o Bloco de Notas.</li>
+</ol>
+<div class="box">Sempre que colocar, tirar ou renomear um arquivo nas pastas, rode o <code>atualizar-galeria.bat</code> de novo.</div>
+
+<h2 id="pastas">2. Mapa das pastas</h2>
+<pre>Trabalhos/
+├─ index.html              a página (não precisa mexer)
+├─ config.js               ★ nomes, data, textos, mensagem final
+├─ atualizar-galeria.bat   ★ duplo clique depois de mexer nas pastas
+├─ gerar_galeria.py        o que o .bat executa
+├─ manual.html             este manual
+└─ assets/
+   ├─ capa/                1 imagem de capa (opcional)
+   ├─ video/
+   │  ├─ intro/            ★ o vídeo da PRIMEIRA TELA
+   │  └─ entrega/          ★ vídeos da galeria (+ capa opcional)
+   ├─ fotos/
+   │  ├─ casal/            ★ fotos do casal
+   │  ├─ celebracao/       ★ fotos da celebração
+   │  └─ detalhes/         ★ fotos de detalhes
+   ├─ musica/              ★ a música de fundo
+   ├─ css/style.css        visual (cores, fontes, animações)
+   └─ js/
+      ├─ galeria.js        lista de arquivos (gerada sozinha — não editar)
+      └─ app.js            código que monta a página</pre>
+<p>★ = o que você usa no dia a dia.</p>
+
+<h2 id="passo">3. Passo a passo</h2>
+
+<h3>Trocar o vídeo da primeira tela</h3>
+<ol>
+  <li>Coloque <b>um</b> vídeo <code>.mp4</code> em <code>assets/video/intro</code> (qualquer nome).</li>
+  <li>Rode <code>atualizar-galeria.bat</code>.</li>
+</ol>
+<p>Ele toca em loop e sem som atrás do nome do casal. Se a pasta estiver vazia, aparece um vídeo de exemplo. Se houver mais de um, usa o primeiro em ordem alfabética.</p>
+
+<h3>Colocar as fotos</h3>
+<ol>
+  <li>Coloque as fotos em <code>assets/fotos/casal</code>, <code>celebracao</code> ou <code>detalhes</code>.</li>
+  <li>Rode <code>atualizar-galeria.bat</code>.</li>
+</ol>
+<p>As fotos aparecem em ordem de nome (<code>01.jpg</code>, <code>02.jpg</code>…). Numere os arquivos para controlar a ordem.</p>
+<div class="box"><b>Quer outra categoria</b> (ex.: “cerimonia”)? Crie uma pasta nova dentro de <code>assets/fotos</code>, <b>sem acento e sem espaço</b>, coloque as fotos e rode o <code>.bat</code>. O botão de filtro aparece sozinho. Para escolher o texto do botão, adicione a linha em <code>nomesCategorias</code> no <code>config.js</code>:<br><code>cerimonia: "Cerimônia",</code></div>
+
+<h3>Colocar os vídeos da entrega</h3>
+<ol>
+  <li>Coloque os <code>.mp4</code> em <code>assets/video/entrega</code>.</li>
+  <li><i>(Opcional)</i> Para escolher a imagem de capa de um vídeo, coloque uma foto com o <b>mesmo nome</b>: <code>01.mp4</code> + <code>01.jpg</code>. Sem foto, a página usa um quadro do próprio vídeo.</li>
+  <li>Rode <code>atualizar-galeria.bat</code>.</li>
+</ol>
+
+<h3>Trocar a música</h3>
+<ol>
+  <li>Coloque <b>uma</b> música (<code>.mp3</code>, <code>.m4a</code>…) em <code>assets/musica</code>.</li>
+  <li>Rode <code>atualizar-galeria.bat</code>.</li>
+</ol>
+<p>Pasta vazia = toca uma trilha suave gerada pela própria página. Para deixar <b>sem música nenhuma</b>, ponha <code>usarTrilhaGerada: false</code> no <code>config.js</code>. O volume também é lá (<code>volume</code>).</p>
+<div class="box warn">Os navegadores só liberam som depois de um clique do visitante. Por isso a música começa quando ele clica em “Abrir minha entrega”.</div>
+
+<h3>Colocar uma imagem de capa</h3>
+<p>Uma imagem em <code>assets/capa</code> vira o fundo da capa (e a imagem que aparece enquanto o vídeo inicial carrega). Sem ela, a página usa a primeira foto.</p>
+
+<h3>Entregar de verdade (esconder os exemplos)</h3>
+<p>Enquanto uma pasta estiver vazia, a página mostra fotos/vídeos de exemplo da internet. Quando as pastas estiverem preenchidas isso some sozinho. Se preferir que uma seção vazia simplesmente desapareça, ponha <code>mostrarDemo: false</code> no <code>config.js</code>.</p>
+
+<h2 id="textos">4. Mudar textos, nomes e data</h2>
+<p>Abra o <code>config.js</code> com o Bloco de Notas. Cada item tem um comentário explicando. Exemplo:</p>
+<pre>noivos: { nome1: "Gabriela", nome2: "Matheus" },
+data: "13 de novembro de 2026",</pre>
+<p>Troque só o que está entre aspas, salve e aperte <span class="k">F5</span> no navegador. Mantenha as aspas e as vírgulas no fim das linhas.</p>
+<p>Para a mensagem final, cada linha entre aspas em <code>mensagem</code> é um parágrafo.</p>
+<p>Para mudar <b>cores e fontes</b>: <code>assets/css/style.css</code>. As cores principais estão no começo, no bloco <code>:root</code>.</p>
+
+<h2 id="dicas">5. Tamanho e formato dos arquivos</h2>
+<table>
+<tr><th>Item</th><th>Formato</th><th>Recomendação</th></tr>
+<tr><td>Fotos</td><td>.jpg .png .webp</td><td>Lado maior de 1600 a 2000 px, até ~500 KB cada. Fotos muito pesadas deixam a página lenta.</td></tr>
+<tr><td>Vídeo inicial</td><td>.mp4 (H.264)</td><td>10 a 20 s, 1080p, sem som, até ~10 MB. É o primeiro a carregar.</td></tr>
+<tr><td>Vídeos da entrega</td><td>.mp4 (H.264)</td><td>Até 1080p. Quanto mais leve, mais rápido abre no celular.</td></tr>
+<tr><td>Música</td><td>.mp3 .m4a</td><td>Até ~5 MB (128 a 192 kbps).</td></tr>
+</table>
+<p>Nomes de arquivo e pastas: use letras, números, <code>-</code> e <code>_</code>; evite acentos e espaços nos nomes das <b>pastas</b>.</p>
+
+<h2 id="problemas">6. Problemas comuns</h2>
+<table>
+<tr><th>O que aconteceu</th><th>O que fazer</th></tr>
+<tr><td>Coloquei fotos e não apareceram</td><td>Rode <code>atualizar-galeria.bat</code> e dê <span class="k">Ctrl</span>+<span class="k">F5</span> na página.</td></tr>
+<tr><td>Continuam aparecendo fotos de exemplo</td><td>A pasta da categoria está vazia ou o formato não é .jpg/.png/.webp. Veja o resumo que o .bat mostra na tela.</td></tr>
+<tr><td>O .bat diz “Python não encontrado”</td><td>Instale o Python em python.org (marque “Add to PATH”) e rode de novo.</td></tr>
+<tr><td>Não toca música</td><td>Precisa clicar em “Abrir minha entrega”. Veja também se o botão “Música” no canto não está desligado.</td></tr>
+<tr><td>O vídeo inicial não aparece</td><td>Use .mp4 com vídeo H.264. Outros formatos podem não rodar em todos os navegadores.</td></tr>
+<tr><td>A página ficou em branco</td><td>Provavelmente faltou uma aspa ou vírgula no <code>config.js</code>. Desfaça a última alteração.</td></tr>
+</table>
+
+<h2 id="dentro">7. Como funciona por dentro</h2>
+<p>Para quem for dar manutenção no código:</p>
+<ul>
+  <li><b>index.html</b> só tem o esqueleto (seções vazias com <code>id</code>). Os textos padrão estão ali, mas são substituídos pelos do <code>config.js</code>.</li>
+  <li><b>config.js</b> define <code>window.CONFIG</code>: nomes, data, textos, mensagem, nomes das categorias, opções de música e demonstração.</li>
+  <li><b>gerar_galeria.py</b> percorre <code>assets/</code> e grava <code>assets/js/galeria.js</code> (<code>window.GALERIA</code>) com a lista de arquivos. Isso é necessário porque uma página aberta direto do computador não consegue listar pastas sozinha. Cada subpasta de <code>assets/fotos</code> vira uma categoria.</li>
+  <li><b>assets/js/app.js</b> lê <code>CONFIG</code> + <code>GALERIA</code> e monta: textos, vídeo inicial, capa, grade de fotos, filtros, vídeos, música, abertura animada e janela de visualização. As seções estão numeradas nos comentários do arquivo.</li>
+  <li><b>assets/css/style.css</b> contém todo o visual e as animações (respeita “reduzir movimento” do sistema).</li>
+  <li>A ordem dos <code>&lt;script&gt;</code> no fim do <code>index.html</code> importa: config → galeria → app.</li>
+  <li>A música gerada usa a Web Audio API (acordes suaves + notas de pentatônica); a lógica está na seção 7 do <code>app.js</code>.</li>
+  <li>Para publicar: envie a pasta inteira (<code>index.html</code>, <code>config.js</code> e <code>assets/</code>) para qualquer hospedagem de site estático. Não é preciso enviar o <code>.bat</code>, o <code>.py</code> nem este manual.</li>
+</ul>
+
+</div></body>
+</html>

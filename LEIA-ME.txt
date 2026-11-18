@@ -1,0 +1,13 @@
+PÁGINA DE ENTREGA — comece por aqui
+===================================
+
+1) Abra o arquivo  manual.html  (duplo clique). Ele explica tudo.
+
+Resumo rápido:
+  - Coloque o vídeo inicial em  assets/video/intro
+  - Coloque as fotos em         assets/fotos/casal, celebracao, detalhes
+  - Coloque os vídeos em        assets/video/entrega
+  - Coloque a música em         assets/musica
+  - Dê duplo clique em          atualizar-galeria.bat
+  - Abra o                      index.html
+  - Nomes, data e textos:       edite o config.js

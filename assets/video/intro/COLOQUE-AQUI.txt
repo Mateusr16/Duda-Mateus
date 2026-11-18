@@ -1,0 +1,2 @@
+Coloque aqui UM vídeo para a primeira tela (mp4, curto, 10 a 20 segundos, de preferência sem som).
+Depois de colocar, dê duplo clique em atualizar-galeria.bat.

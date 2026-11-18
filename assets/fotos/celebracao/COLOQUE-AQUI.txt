@@ -1,0 +1,3 @@
+Coloque aqui as fotos desta categoria (jpg/png/webp).
+Quer outra categoria? Crie outra pasta dentro de assets/fotos (sem acentos nem espaços).
+Depois, dê duplo clique em atualizar-galeria.bat.
